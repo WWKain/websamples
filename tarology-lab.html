@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1.0"
+	>
+	<meta
+		name="description"
+		content="Calcola il tuo Arcano Maggiore attraverso la tua data di nascita."
+	>
+	<title>Tarocchi — Arcano Maggiore</title>
+	<link rel="stylesheet" href="res/tarots/style.css">
+</head>
+<body>
+	<div class="stars-background svg-host" data-svg="res/tarots/stars.svg" aria-hidden="true"></div>
+
+	<main class="page">
+		<section class="hero">
+			<div class="title-image svg-host" data-svg="res/tarots/title.svg" aria-label="Tarocchi"></div>
+			<p class="hero-subtitle">Inserisci la tua data di nascita e scegli uno dei cinque metodi per esplorare il significato delle tue carte</p>
+		</section>
+		<section class="calculator">
+			<div class="date-container">
+				<label
+					for="birth-date"
+					class="visually-hidden"
+				>
+					Data di nascita
+				</label>
+				<div class="date-input-wrapper">
+					<input
+						id="birth-date"
+						class="date-input"
+						type="text"
+						inputmode="numeric"
+						autocomplete="bday"
+						maxlength="8"
+						aria-label="Data di nascita"
+					>
+					<div class="date-digits" aria-hidden="true">
+						<span class="date-digit"></span>
+						<span class="date-digit"></span>
+						<span class="date-digit"></span>
+						<span class="date-digit"></span>
+						<span class="date-digit"></span>
+						<span class="date-digit"></span>
+						<span class="date-digit"></span>
+						<span class="date-digit"></span>
+					</div>
+					<div class="date-decoration svg-host" data-svg="res/tarots/date.svg" aria-hidden="true"></div>
+				</div>
+				<p
+					id="date-error"
+					class="date-error"
+					aria-live="polite"
+				></p>
+			</div>
+			<div
+				class="methods"
+				aria-label="Metodi di calcolo"
+			>
+				<button
+					type="button"
+					class="method-button"
+					data-method="simple"
+				>
+					Metodo con somma semplice
+				</button>
+				<button
+					type="button"
+					class="method-button"
+					data-method="split"
+				>
+					Metodo con divisione dell'anno
+				</button>
+				<button
+					type="button"
+					class="method-button"
+					data-method="full"
+				>
+					Metodo con somma completa
+				</button>
+				<button
+					type="button"
+					class="method-button"
+					data-method="soul"
+				>
+					Metodo con Personalità e Anima
+				</button>
+				<button
+					type="button"
+					class="method-button method-button-wide"
+					data-method="complete"
+				>
+					Metodo con lettura completa
+				</button>
+			</div>
+		</section>
+	</main>
+	<div
+		id="arcana-modal"
+		class="modal"
+		data-view="card"
+		aria-hidden="true"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="arcana-title"
+	>
+		<div class="modal-overlay"></div>
+		<div class="modal-content">
+			<button
+				id="modal-info"
+				class="modal-info"
+				type="button"
+				aria-label="Mostra le informazioni sul metodo di calcolo"
+				aria-controls="method-info-view"
+				aria-expanded="false"
+			>
+				🛈︎
+			</button>
+			<button
+				id="modal-close"
+				class="modal-close"
+				type="button"
+				aria-label="Chiudi"
+			>
+				✖
+			</button>
+			<div class="arcana-header">
+				<h1 id="arcana-title">
+					Arcano Maggiore
+				</h1>
+				<h2 id="arcana-name"></h2>
+			</div>
+
+			<div class="view view-card arcana-body">
+				<div class="arcana-image-container">
+					<div id="arcana-image" class="arcana-image svg-host" aria-hidden="true"></div>
+				</div>
+				<div class="arcana-description">
+					<p id="arcana-text"></p>
+				</div>
+			</div>
+
+			<div id="reading-grid" class="view view-reading"></div>
+
+			<section
+				id="method-info-view"
+				class="view view-info method-info-view"
+				aria-labelledby="method-info-title"
+			>
+				<button
+					id="method-info-back"
+					class="modal-close"
+					type="button"
+					aria-label="Torna al risultato"
+				>
+					✖
+				</button>
+				<div class="method-info-content">
+					<h2 id="method-info-title"></h2>
+					<p id="method-info-text"></p>
+				</div>
+			</section>
+		</div>
+	</div>
+	<script src="res/tarots/arcana-data.js"></script>
+	<script src="res/tarots/script.js"></script>
+</body>
+</html>
